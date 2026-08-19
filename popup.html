@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>Popup Guard</title>
+</head>
+<body>
+  <header class="head">
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+        <path d="M12 2.5 4 5.5v6c0 5 3.4 8.3 8 10 4.6-1.7 8-5 8-10v-6L12 2.5Z"
+              stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="m8.6 12 2.4 2.4 4.4-4.8" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="head-text">
+      <h1>Popup Guard</h1>
+      <p id="statusline" class="status" aria-live="polite">No sites guarded yet</p>
+    </div>
+    <span id="version" class="ver" title="Installed version">v–</span>
+  </header>
+
+  <section class="add">
+    <label for="domainInput" class="section-label">Protect a site</label>
+    <div class="add-row">
+      <input id="domainInput" type="text" spellcheck="false" autocomplete="off"
+             placeholder="e.g. example.com" />
+      <button id="addBtn" type="button">Add</button>
+    </div>
+    <p id="addHint" class="hint">Add one or several — separate with spaces or commas.</p>
+  </section>
+
+  <section class="list-wrap">
+    <div class="list-head">
+      <span class="section-label">Guarded sites</span>
+      <span id="count" class="count">0</span>
+    </div>
+    <ul id="domainList" class="list" role="list"></ul>
+    <p id="empty" class="empty">Add a site above to start blocking pop-ups and forced redirects there.</p>
+  </section>
+
+  <section class="settings">
+    <span class="section-label">On guarded sites</span>
+
+    <label class="toggle">
+      <span class="toggle-text">
+        <span class="toggle-title">Block pop-ups &amp; new tabs</span>
+        <span class="toggle-desc">Stops scripts opening windows or spawning new tabs.</span>
+      </span>
+      <input type="checkbox" id="blockPopups" />
+      <span class="track" aria-hidden="true"></span>
+    </label>
+
+    <label class="toggle">
+      <span class="toggle-text">
+        <span class="toggle-title">Block forced redirects</span>
+        <span class="toggle-desc">Stops the page sending you to a different site on its own.</span>
+      </span>
+      <input type="checkbox" id="blockRedirects" />
+      <span class="track" aria-hidden="true"></span>
+    </label>
+
+    <label class="toggle">
+      <span class="toggle-text">
+        <span class="toggle-title">Show a notice when blocking</span>
+        <span class="toggle-desc">A small message appears on the page.</span>
+      </span>
+      <input type="checkbox" id="notify" />
+      <span class="track" aria-hidden="true"></span>
+    </label>
+
+    <label class="toggle toggle-warn">
+      <span class="toggle-text">
+        <span class="toggle-title">Auto-close pop-up tabs</span>
+        <span class="toggle-desc">Aggressive — may also close tabs you open on purpose.</span>
+      </span>
+      <input type="checkbox" id="aggressiveClose" />
+      <span class="track" aria-hidden="true"></span>
+    </label>
+
+    <label class="toggle toggle-warn">
+      <span class="toggle-text">
+        <span class="toggle-title">Strict mode — block everything leaving the site</span>
+        <span class="toggle-desc">Network-level block that catches what scripts hide. Links to other sites stop working; use the address bar to go elsewhere.</span>
+      </span>
+      <input type="checkbox" id="strict" />
+      <span class="track" aria-hidden="true"></span>
+    </label>
+  </section>
+
+  <footer class="foot">
+    Guarding runs only on the sites listed above. Everywhere else, nothing changes.
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
